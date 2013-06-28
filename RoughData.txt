@@ -1,0 +1,13 @@
+37,entrepreneur,married,secondary,no,2971,no,no,cellular,17,nov,361,2,188,11,other,yes
+58,management,married,tertiary,no,2143,yes,no,unknown,5,may,261,1,-1,0,unknown,no
+57,technician,married,secondary,no,839,no,yes,unknown,5,may,225,1,-1,0,unknown,no
+49,management,married,tertiary,yes,378,yes,no,unknown,5,may,230,1,-1,0,unknown,no
+58,management,married,tertiary,no,68,yes,no,unknown,6,may,172,5,-1,0,unknown,yes
+52,blue-collar,married,primary,no,58,yes,no,unknown,6,may,213,3,-1,0,unknown,no
+40,services,married,primary,no,-9,yes,no,unknown,15,may,920,2,-1,0,unknown,yes
+25,blue-collar,married,secondary,no,-7,yes,no,unknown,5,may,365,1,-1,0,unknown,no
+53,technician,married,secondary,no,-3,no,no,unknown,5,may,1666,1,-1,0,unknown,no
+36,admin.,divorced,secondary,no,506,yes,no,unknown,5,may,577,1,-1,0,unknown,no
+37,admin.,single,secondary,yes,0,yes,no,unknown,5,may,137,1,-1,0,unknown,no
+44,services,divorced,secondary,yes,2586,yes,no,unknown,5,may,160,1,-1,0,unknown,no
+50,management,married,secondary,no,49,yes,no,unknown,5,may,180,2,-1,0,unknown,no

@@ -1,0 +1,16 @@
+age,numeric
+job,categorical,admin.,unknown,unemployed,management,housemaid,entrepreneur,student,blue-collar,self-employed,retired,technician,services
+marital,categorical,married,divorced,single
+education,categorical,unknown,secondary,primary,tertiary
+default,categorical,yes,no
+balance,numeric
+housing,categorical,yes,no
+loan,categorical,yes,no
+contact,categorical,unknown,telephone,cellular
+day,numeric
+month,categorical,jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec
+duration,numeric
+campaign,numeric
+pdays,numeric
+previous,numeric
+poutcome,categorical,unknown,other,failure,success
