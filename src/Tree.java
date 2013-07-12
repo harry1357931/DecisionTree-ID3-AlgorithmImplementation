@@ -1,8 +1,11 @@
-
 /* Class Tree
  * Machine Learning - CS 3813
- * To Dr.Changhe  Yuan
- * Builds a TreeNode
+ * Description:
+ * This class contains methods for initiating (and Training) a Decision Tree on 
+ * different Training sets and for Testing its accuracy on Training & Testing Sets. 
+ * **********
+ * Parameters
+ * **********
  * @param root Stores the reference to root Node
  * @param FeatNotUsed Update on the Status of which Feature is used and Which is not...
  * 
@@ -14,10 +17,8 @@ public class Tree {
 	   public TreeNode root;
 	   public static int[] FeatNotUsed = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};       // If feature used: set FeatNotUsed[feature_id] = -1
 	
-	   public Tree(int feat_id){          // Constructor....Creates Root Node...
-		  
+	   public Tree(int feat_id){       // Constructor....Creates Root Node...
 		   root = new TreeNode(feat_id, null);             // root node
-	       
 	   }
 	   
 	   public String[][] UpdatedArrayForNumeric(String[][] extractFrom, int feature_id, int ZeroOrOne){
@@ -66,7 +67,7 @@ public class Tree {
 				   	 DataSubset[count] = extractFrom[i];
 					 count++;
 				  }
-			    }  // for loop ends here...
+			    }  // for loop
 			}
 	        else
 	        {
@@ -76,11 +77,11 @@ public class Tree {
 				      count++;
 				   }
 				}
-	        } // else ends here...
+	        } // else
 			
 			return DataSubset;
 		   
-	   } // function ends here....
+	   } // function
        
 	   public void BuildTreeAfterRoot(String[][] DataSubset, TreeNode ParentRoot){
 		   
@@ -111,15 +112,15 @@ public class Tree {
 		          ParentRoot.BreakPoint = Data.BREAKPOINT;
 				  TreeNode child = new TreeNode(Feat_id, ParentRoot);   // Need change here...assign breakpoint in parent node    //Data.BREAKPOINT is updated in UpdatedArrayForNumeric function
 				  ParentRoot.children[ParentRoot.ChildCount] = child;
-				  ParentRoot.ChildCount++;                                // Increasing Child of Parent...
+				  ParentRoot.ChildCount++;                              // Increasing Child of Parent...
 				   
-				  BuildTreeAfterRoot(NextDataSubset, child);              // Recursive Call...
-				  FeatNotUsed[Feat_id]= Feat_id;                          // Feature_Id ready to use again...
+				  BuildTreeAfterRoot(NextDataSubset, child);            // Recursive Call...
+				  FeatNotUsed[Feat_id]= Feat_id;                        // Feature_Id ready to use again...
 
-  			  } // for loop ends here...
+  			  } // for 
 		   }
 		   else
-		   { for(int i=0; i < Data.FeatureValues[ParentRoot.feature_id].length; i++){    // Need Change Here...
+		   { for(int i=0; i < Data.FeatureValues[ParentRoot.feature_id].length; i++){   
 		        if(Data.FeatureValues[ParentRoot.feature_id][i]== null){     // If feature Value is Null in Feature_values.txt
 				    continue;
 			    }

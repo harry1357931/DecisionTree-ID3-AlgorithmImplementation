@@ -1,10 +1,10 @@
 
 /* Class BankMarketingMain
+ * Final Project
  * Machine Learning - CS 3813
- * To Dr.Changhe  Yuan
  * Description: 
- *     1) Builds Decision Tree using Training Data 
- *     2) Tests Data and Output Final Reports related to accurate predictions
+ *    1) Builds Decision Tree using Training Data 
+ *    2) Tests Data and Output Final Reports related to accurate predictions
  * @param data  a Data Class Object that manages all queries relating 
  * to Reading and Storing of Data points from  text files
  * @param DecisionTree  a Tree Class Object that builds Decision Tree using Training Data, 
@@ -30,7 +30,7 @@ public class BankMarketingMain {
 	     
 	   } 
 				
-	}// Main Function ends here...
+	}// Main Function
 	
 	public static void ResettingValues(){
 		for(int i=0; i<16; i++){
@@ -41,4 +41,4 @@ public class BankMarketingMain {
 		Data.BREAKPOINT =0;
 	}
 
-}// Class BankMarketingMain Ends here...
+}// Class BankMarketingMain

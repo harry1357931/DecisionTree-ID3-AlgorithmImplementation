@@ -1,7 +1,9 @@
-
 /* Class Data
+ * Final Project
  * Machine Learning - CS 3813
- * To Dr. Changhe Yuan
+ * **********
+ * Parameters
+ * **********
  * @param Features  an array storing name of attributes
  * @param FeatureType an array storing Type of attributes: Categorical or Numerical  
  * @param FeatureValues  a Multidimensional array to Store Feature Values of Attributes  
@@ -11,14 +13,14 @@
  * @param AccurateTrainingCount  Count the accurate Training Predictions
  * @param AccurateTestingCount   Count the accurate Testing Predictions
  * @param BREAKPOINT  Stores the recently calculated value of Break Point 
- * 
+ * ************
+ * Author Name:
+ * ************
  * @author Gurpreet Singh 
  */
-
 import java.util.StringTokenizer;
-
 import javax.swing.JOptionPane;
-//import java.io.*;
+
 public class Data {
 	
 	public StringTokenizer myTokens;
@@ -27,7 +29,6 @@ public class Data {
 	public static int TotalDataPoints = CountTotalDataPointsInFile(fileName);
 	public int NumOfTrainingDataPoints;
 	public int[] TrainingIndexes;
-	
 	
 	// BankMarketing Data Set
 	public static String[][] MainDataSet = new String[TotalDataPoints][17];                   // sub array length 17
@@ -61,41 +62,14 @@ public class Data {
        TestingSet = new String[TotalDataPoints-NumOfTrainingDataPoints][17]; 
        FillingRandomlyTrainingAndTestingSets(TrainingPerc);
     	
-    }// Constructor Ends here
+    }// Constructor
     
     public void FillingRandomlyTrainingAndTestingSets(double TrainingPercent){
-    	
-      /*
-    	int aNumber;
-    	for(int i=0; i< TrainingIndexes.length; i++){                            // To Randomly fill Array TrainingIndexes..to use it later for filling Training and Testing sets
-    		while(true){
-    		  aNumber = (int) (Math.random() * (TotalDataPoints-1) + 0);     
-    		  if(NumExistsInArray(aNumber, i)== false)
-    			  break;
-    		}
-    		TrainingIndexes[i] = aNumber; 
-    	 }
-      	   
-      	
-    	 // Now Filling Training and Testing Sets...Using TrainingIndexes Array...
-         int countTraining=0, countTesting=0;
-         for(int i=0; i<MainDataSet.length;i++){	
-    	     
-        	   if(NumExistsInArray(i, NumOfTrainingDataPoints) == true){
-         		 TrainingSet[countTraining] = MainDataSet[i];
-         		 countTraining++;
-        	   }
-        	   else{
-        		 TestingSet[countTesting] = MainDataSet[i];
-            	 countTesting++;
-        	   }
-         }	   
-         */ 
           
     	TrainingSet = readFile("Train"+(int)(TrainingPercent)+".txt", TrainingSet.length, 17);
     	TestingSet = readFile("Test"+(int)(100-TrainingPercent)+".txt", TestingSet.length, 17);         
          
-    }// Function ends here...
+    }
     
     public boolean NumExistsInArray(int NumToBeChecked, int UpToIndex){
     	if(UpToIndex == 0)
@@ -151,7 +125,7 @@ public class Data {
   public double InfoGain(int feature_id, String[][] rootArray){           // For Testing Purpose: let feature_id = 1
 	    
 		double infogain=0, EntropyBeforeFeature=0, EntropyAfterFeature=0, Prob=0;
-		int NumElementsInRootArray = CountNumElements(rootArray);           // Still needs to be Validated...
+		int NumElementsInRootArray = CountNumElements(rootArray);           
 		EntropyBeforeFeature = CalculateEntropy(rootArray);                // EntropyBeforeFeature 
 		
 		if(FeatureType[feature_id].equalsIgnoreCase("numeric")){
@@ -160,10 +134,10 @@ public class Data {
 		}else if(FeatureType[feature_id].equalsIgnoreCase("categorical"))
 		{
 		   
-	      for(int i=0; i < FeatureValues[feature_id].length; i++){           // need Change here....sub array length...
+	      for(int i=0; i < FeatureValues[feature_id].length; i++){         
 		    
-			if(FeatureValues[feature_id][i] == null){        // Not Needed...
-				break;                                       // Not Needed...
+			if(FeatureValues[feature_id][i] == null){        
+				break;                                       
 			}
 				
 		    String[][] UpdatedArray = updatedArray(rootArray, feature_id, FeatureValues[feature_id][i]);
@@ -174,14 +148,14 @@ public class Data {
 			
 			EntropyAfterFeature= EntropyAfterFeature + Prob*CalculateEntropy(UpdatedArray);  // Entropy After feature
 		
-		  }// for loop ends here		
+		  }// for loop 		
 		
-		}// else ends here
+		}// else 
 		
 		infogain = EntropyBeforeFeature - EntropyAfterFeature;         
 	    return infogain;                                        
    	
-   }   // Info gain function ends here...
+   }   // Info gain function
   
     public double CalcEntropyAfterContinuousFeature(String[][] rootArray, int feature_id){
     	double EntropyAfterFeature = 0, BreakPoint =0, Prob=0; 
@@ -214,22 +188,11 @@ public class Data {
     		   {   GreaterThanEqualToBreakPoint[1]++; 
     	       }
     	   }
-    	} // for loop ends here
+    	} // for 
         
-    	
-    	//System.out.println("LessThanBP  yes: " + LessThanBreakPoint[0]);
-    	//System.out.println("LessThanBP  no: " + LessThanBreakPoint[1]);
-    	//System.out.println("GreaterThanBP  yes: " + GreaterThanEqualToBreakPoint[0]);
-    	//System.out.println("GreaternBP  no: " + GreaterThanEqualToBreakPoint[1]);
-    	
         Prob = (sumArray(LessThanBreakPoint)*1.0)/(rootArray.length*1.0); 
-    	
-        //System.out.println("Prob Less than: " + Prob);
-        
         EntropyAfterFeature = Prob*EntropySub(LessThanBreakPoint);
-        //System.out.println("Entropy after Less: " + EntropyAfterFeature);
     	Prob = (sumArray(GreaterThanEqualToBreakPoint)*1.0)/(rootArray.length*1.0);
-    	//System.out.println("Prob Greater than: " + Prob);
     	EntropyAfterFeature = EntropyAfterFeature + Prob*EntropySub(GreaterThanEqualToBreakPoint);
     	System.out.println("Entropy after Greater: " + EntropyAfterFeature);
     	return EntropyAfterFeature;
@@ -238,7 +201,7 @@ public class Data {
    public double EntropySub(int[] x){             //x: Class results array...[1, 2, 0, 1] = [unacc, acc, good, vgood]
       double entropy=0, Prob, ArraySum;
       ArraySum = sumArray(x);
-      if(ArraySum==0)       // need to play around here...
+      if(ArraySum==0)       
          return 0;
 		for(int i=0; i<x.length; i++){
 			Prob = x[i]/ArraySum;             
@@ -268,13 +231,11 @@ public class Data {
 				AllClassesCount[1]++;              //no++
 			}
 			
-		 } // for loop ends here... 
-	    } // else ends here... 	
+		 } // for loop ... 
+	    } // else ... 	
 		return AllClassesCount;
 	}
 	
-	
-	// updated(extractFrom array, Feature(represented by feat_id), Feature Value)
 	public String[][] updatedArray(String[][] extractFrom, int feat_id, String feat_val){
 		int count=0;
 		
@@ -287,7 +248,7 @@ public class Data {
 			if(extractFrom[i][feat_id].equals(feat_val))      // use here "feature_id" and "value"
 				count++;
 	    }
-		if(count==0)       // here is the problem...
+		if(count==0)     
 		   return null;
 		
 		String[][] DataSubset = new String[count][17];         // "count" will give us the precise array
@@ -302,7 +263,6 @@ public class Data {
 		}
 		return DataSubset;
 	}
-	
 	
 	public int CountNumElements(String[][] ToCountIn){
 		if(ToCountIn == null){
@@ -329,7 +289,7 @@ public class Data {
 			CountLine++;
 		}
 		return CountLine;                                         
-    }// Read File method ends here
+    }// Read File method 
 	
 	public int sumArray(int[] x){
 	   	int sum=0;
@@ -346,8 +306,6 @@ public class Data {
 	    return (Math.log(num)/Math.log(2));
 	}
 	
-	 
-    
     public void FillingFeatureValues(){
     	FeatMain = readFile("Feature_Values.txt", FeatMain.length, -1);
     	
@@ -387,10 +345,10 @@ public class Data {
 			
 			count++;      
 			line=tfi.readLine();
-		}// while loop ends here
+		}// while loop 
 		
 		return loaded;           // "loaded" array is an array formed by reading from file...
-  	}// Read File method ends here
+  	}// Read File method 
     
     
     public void OutputFinalReport(){
@@ -419,23 +377,7 @@ public class Data {
     	builder.append("Total DataPoints: "+ TotalDataPoints+"\n");
     	builder.append("Number of Attributes: 16 + Output Attribute\n");
     	builder.append("Types of Attributes: 10 Categorical and 7 Numeric Attributes \n\n");
-    	/*
-		builder.append("Training Set: "+TrainingPercent+"%\n");
-		builder.append("Data Points in Training Set: "+NumOfTrainingDataPoints+"\n\n");
-		builder.append("Testing Set: "+(100-TrainingPercent)+"%\n");
-		builder.append("Data Points in Testing Set: "+(TotalDataPoints-NumOfTrainingDataPoints+"\n\n"));
-		builder.append("The Decision Tree is trained with "+TrainingPercent+"% Training Set"+"\n");
-		builder.append("Training Set Accuracy Rate = "+getPercentageAccuracy("Training")+"%\n");
-		builder.append("Total Training Datapoints Tested: "+NumOfTrainingDataPoints+"\n");
-		builder.append("No. of Training Datapoint Accurate Predictions: "+AccurateTrainingCount+"\n\n");
-		builder.append("Testing Set Accuracy Rate = "+getPercentageAccuracy("Testing")+"%"+"\n");
-		builder.append("Total Testing Datapoints Tested: "+(TotalDataPoints-NumOfTrainingDataPoints)+"\n");
-		builder.append("No. of Testing Datapoints Accurate Predictions: "+AccurateTestingCount+"\n\n");
-		builder.append("Combined (Training + Testing)Set Accuracy Rate: "+getPercentageAccuracy("Combined")+"%\n");
-		builder.append("To Run the Program with different Training Percentage:-\n");
-		builder.append("Change the Value of Static Variable 'TrainingPercent' in Class 'Data' to one of 20, 40, 60, 80 percent  and then Run the Program Again...");
-	      */
-		
+    	
 		// X
 		
 		builder.append("Training Set: "+(100-TrainingPercent)+"%\n");
@@ -457,6 +399,4 @@ public class Data {
 		JOptionPane.showMessageDialog(null, builder.toString());
     }
 
-}// Class Data ends here...
-
-
+}// Class Data

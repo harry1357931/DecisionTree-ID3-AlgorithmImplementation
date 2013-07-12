@@ -1,6 +1,4 @@
-// TextFileInput.java
 // Copyright (c) 2000, 2005 Dorothy L. Nixon.  All rights reserved.
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
