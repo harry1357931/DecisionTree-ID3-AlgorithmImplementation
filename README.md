@@ -1,9 +1,10 @@
-MachineLearning
-===============
+Decision Tree [ID3 Algorithm Implementation]
+============================================
+Actual Project Name: Bank Direct Marketing <br>
+Purpose: To Predict whether client will subscribe to a Term deposit or Not<br>
+This repository contains java implementation of ID3 algorithm to train a Decision Tree. <br>
+Dataset size: 45211 data points
 
-This repository contains independent java implementation of following Machine Learning algorithms along with 
-their Training and Testing data: 
-
-1) Multilayer Neural Network [Error Back Propagation]       
-2) Expectation Maximization Algorithm Gaussian Mixture Model                                                              
-3) Decision Tree[ID3 Algorithm]   
+Description:
+============
+Check file 'Singh,Wu.BankDirectMarketing.FinalReport.doc' for Algorithm Used, DataSet and Experiment Results.
